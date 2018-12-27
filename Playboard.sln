@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoardCore", "BoardCore\Boar
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExplodingKittens", "ExplodingKittens\ExplodingKittens.csproj", "{CBF3EDFC-9AC7-4CA2-AF6B-2793CA5ABEDA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoardServer", "BoardWebsocket\BoardServer.csproj", "{6E3B5A26-FF4D-4EBA-A46C-A9D9A4525934}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{CBF3EDFC-9AC7-4CA2-AF6B-2793CA5ABEDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CBF3EDFC-9AC7-4CA2-AF6B-2793CA5ABEDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CBF3EDFC-9AC7-4CA2-AF6B-2793CA5ABEDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E3B5A26-FF4D-4EBA-A46C-A9D9A4525934}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E3B5A26-FF4D-4EBA-A46C-A9D9A4525934}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E3B5A26-FF4D-4EBA-A46C-A9D9A4525934}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E3B5A26-FF4D-4EBA-A46C-A9D9A4525934}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
