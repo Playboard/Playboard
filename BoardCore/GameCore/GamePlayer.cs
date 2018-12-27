@@ -1,4 +1,5 @@
 ﻿using BoardCore.GameCore.GameCard;
+using BoardCore.ServerCore.Network;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -20,11 +21,13 @@ namespace BoardCore.GameCore
         where GameImpl : Game<GameImpl>
     {
         public GameImpl Game { get; private set; }
-        public string PlayerName { get; protected set; }
+        public Player NetworkPlayer { get; private set; }
+        public virtual string PlayerName { get; protected set; }
         public bool ReadyStatus { get; set; }
-        public GamePlayer(GameImpl Game, string PlayerName)
+        public GamePlayer(GameImpl Game, Player networkPlayer)
         {
-            this.PlayerName = PlayerName;
+            this.NetworkPlayer = NetworkPlayer;
+            this.PlayerName = NetworkPlayer.Name;
             this.Game = Game;
         }
     }

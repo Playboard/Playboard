@@ -25,6 +25,25 @@ namespace BoardCore.ServerCore.Lobby
         public void BindEvent<Event>(EventHandlerFunc<Event> handler) where Event : IRoomEvent => base.BindEvent<Event>(Index, handler);
     }
 
+    public struct RoomGameSelectEvent : IRoomEvent
+    {
+
+    }
+
+    public struct PlayerJoinRoomEvent : IRoomEvent
+    {
+        public string Name { get; set; }
+        public PlayerJoinRoomEvent(string Name)
+        {
+            this.Name = Name;
+        }
+    }
+
+    public struct RoomCreateEvent : IRoomEvent
+    {
+
+    }
+
     public struct RoomDestoryEvent : IRoomEvent
     {
 

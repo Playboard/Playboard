@@ -24,41 +24,59 @@ namespace BoardCore.GameCore
         void PeekPlayer(IEnumerable<Player> players);
     }
 
+    [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
+    public sealed class GameInfoAttribute: Attribute
+    {
+        public string Author { get; set; }
+        public string Name { get; set; }
+        public string FriendlyName { get; set; }
+        public string Version { get; set; }
+    }
+
+    [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
+    public sealed class GamePlayerAttribute : Attribute
+    {
+        public int MaxPlayer { get; set; }
+        public int MinPlayer { get; set; }
+    }
+
+    [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
+    public sealed class GameGuidAttribute : Attribute
+    {
+        public string GUID { get; set; }
+    }
+
     public abstract class Game
     {
-        public string Name { get; private set; }
-        public string Author { get; private set; }
-        public int MaxPlayer { get; private set; }
-        public int MinPalyer { get; private set; }
 
         public abstract void IntializateNetworkRoom(Room room);
         public abstract void OnPlayerJoin(Player player);
         public abstract void OnPlayerLeave(Player player);
 
-        public Game(string Name, string Author, int MaxPlayer, int MinPlayer)
-        {
-            this.Name = Name;
-            this.Author = Author;
-            this.MaxPlayer = MaxPlayer;
-            this.MinPalyer = MinPalyer;
-        }
+
+        public Game() { }
     }
 
     /// <summary>
     /// A base class for all <see cref="Game"/>
     /// </summary>
     public abstract class Game<T> : Game
-        where T : Game<T> 
+        where T : Game<T>
     {
-        protected static readonly Dictionary<Type, Func<T, Rule>> RuleSet = new Dictionary<Type, Func<T, Rule>>();
-        protected readonly Type CurrentGame = typeof(T);
-
-        public Game(string Name, string Author, int MaxPlayer, int MinPlayer) : base(Name, Author, MaxPlayer, MinPlayer) { }
-
         protected Rule NextRule { get; private set; }
         public bool IsGameStart { get; protected set; }
         public bool IsGameEnd { get; protected set; }
+        public static string Name { get; private set; }
+        public static string Author { get; private set; }
 
+        protected static readonly Dictionary<Type, Func<T, Rule>> RuleSet = new Dictionary<Type, Func<T, Rule>>();
+        protected readonly Type CurrentGame = typeof(T);
+        public readonly static GameInfo GameInfo = GameInfo.FromGameType(typeof(T));
+
+        public Game()
+        {
+        }
+        
         /// <summary>
         /// Run game
         /// </summary>

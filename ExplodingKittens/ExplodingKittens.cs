@@ -1,6 +1,8 @@
 ﻿using BoardCore.GameCore;
 using BoardCore.GameCore.GameCard;
 using BoardCore.GameCore.Utils;
+using BoardCore.ServerCore.Lobby;
+using BoardCore.ServerCore.Network;
 using ExplodingKittens.Rules;
 using System;
 using System.Collections.Generic;
@@ -9,6 +11,9 @@ using System.Threading.Tasks;
 
 namespace ExplodingKittens
 {
+    [GameInfo(Author = "Deliay", Name = "Exploding Kittens", FriendlyName = "爆炸猫咪", Version = "1.0")]
+    [GamePlayer(MinPlayer = 2, MaxPlayer = 5)]
+    [GameGuid(GUID = "632C8AF3-4FF1-4539-8144-FF3DA7E87771")]
     public class ExplodingKittens : Game<ExplodingKittens>
     {
         public LinkedList<ExplodingPlayer> Players = new LinkedList<ExplodingPlayer>();
@@ -26,7 +31,7 @@ namespace ExplodingKittens
             RegisterRule(game => new PlayerWin(game));
         }
 
-        public ExplodingKittens() : base("Exploding Kittens", "Deliay", 2, 5) { }
+        public ExplodingKittens() { }
 
         public override async Task OnGameAsync()
         {
@@ -88,7 +93,7 @@ namespace ExplodingKittens
 
         public override void GameStart()
         {
-            if (this.Players.Count() > this.MaxPlayer)
+            if (this.Players.Count() > GameInfo.MaxPlayer)
             {
                 base.IsGameStart = true;
             }
@@ -99,6 +104,19 @@ namespace ExplodingKittens
             throw new NotImplementedException();
         }
 
+        public override void IntializateNetworkRoom(Room room)
+        {
+            throw new NotImplementedException();
+        }
 
+        public override void OnPlayerJoin(Player player)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void OnPlayerLeave(Player player)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
